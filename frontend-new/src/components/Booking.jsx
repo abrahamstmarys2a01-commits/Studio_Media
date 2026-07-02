@@ -13,7 +13,7 @@ const Booking = () => {
         const data = { studio, date, time };
 
         try {
-            const res = await fetch('http://localhost:3000/api/book', {
+            const res = await fetch('/api/book', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
