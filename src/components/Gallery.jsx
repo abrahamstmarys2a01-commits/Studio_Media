@@ -1,17 +1,39 @@
 import React, { useState } from 'react';
 
-import gallery1 from '../assets/gallery_1.png';
-import studioA from '../assets/studio_a.png';
-import heroBg from '../assets/hero_bg.png';
-import studioB from '../assets/studio_b.png';
+import podcast1 from '../assets/gallery_1.png';
+import podcast2 from '../assets/podcast_1_1782978594306.png';
+import podcast3 from '../assets/podcast_img_3_1782978743911.png';
+
+import interview1 from '../assets/interview_img_1_1782978754549.png';
+import interview2 from '../assets/interview_img_2_1782978769133.png';
+import interview3 from '../assets/interview_img_3_1782978781179.png';
+
+import youtube1 from '../assets/studio_a.png';
+import youtube2 from '../assets/studio_b.png';
+import youtube3 from '../assets/youtube_img_1_1782978834609.png';
+
+import reels1 from '../assets/hero_bg.png';
+import reels2 from '../assets/custom_hero_bg.png';
+import reels3 from '../assets/podcast_img_1_1782978719882.png'; 
 
 const images = [
-    { src: gallery1, categories: ['podcast'] },
-    { src: studioA, categories: ['interview', 'youtube'] },
-    { src: heroBg, categories: ['podcast', 'reels'] },
-    { src: studioB, categories: ['youtube'] },
-    { src: 'https://images.unsplash.com/photo-1556761175-5973dc0f32b7?w=600&auto=format&fit=crop', categories: ['interview'] },
-    { src: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&auto=format&fit=crop', categories: ['reels'] }
+    // Reels (Custom Image First)
+    { src: reels2, categories: ['reels'] },
+    // Podcast
+    { src: podcast1, categories: ['podcast'] },
+    { src: podcast2, categories: ['podcast'] },
+    { src: podcast3, categories: ['podcast'] },
+    // Interview
+    { src: interview1, categories: ['interview'] },
+    { src: interview2, categories: ['interview'] },
+    { src: interview3, categories: ['interview'] },
+    // YouTube
+    { src: youtube1, categories: ['youtube'] },
+    { src: youtube2, categories: ['youtube'] },
+    { src: youtube3, categories: ['youtube'] },
+    // Reels
+    { src: reels1, categories: ['reels'] },
+    { src: reels3, categories: ['reels'] }
 ];
 
 const Gallery = () => {

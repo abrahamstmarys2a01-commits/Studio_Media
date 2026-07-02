@@ -2,29 +2,29 @@
    Variables & Theme Defaults
    ======================================= */
 :root {
-    --bg-dark: #f8fafc;
+    --bg-dark: #fafafa;
     --bg-card: #ffffff;
-    --bg-card-hover: #f1f5f9;
+    --bg-card-hover: #f5f5f5;
     
-    --primary: #6d28d9; /* Deep purple */
-    --primary-hover: #7c3aed;
-    --secondary: #2563eb; /* Blue */
-    --accent: #f59e0b; /* Amber */
+    --primary: #000000; 
+    --primary-hover: #333333;
+    --secondary: #666666; 
+    --accent: #000000; 
     
-    --text-main: #0f172a;
-    --text-muted: #64748b;
+    --text-main: #111111;
+    --text-muted: #666666;
     
-    --success: #10b981;
-    --danger: #ef4444;
+    --success: #000000;
+    --danger: #ff4444;
 
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(0, 0, 0, 0.08);
     
-    --font-heading: 'Outfit', sans-serif;
+    --font-heading: 'Inter', sans-serif;
     --font-body: 'Inter', sans-serif;
     
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --border-radius: 16px;
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --border-radius: 12px;
 }
 
 * {
@@ -87,9 +87,8 @@ ul {
 .section-header h2 {
     font-size: 3rem;
     margin-bottom: 10px;
-    background: linear-gradient(90deg, #1e293b, #64748b);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text-main);
+    letter-spacing: -0.03em;
 }
 
 .section-header p {
@@ -100,7 +99,7 @@ ul {
 .btn {
     display: inline-block;
     padding: 14px 28px;
-    border-radius: 50px;
+    border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
     border: none;
@@ -110,14 +109,15 @@ ul {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: var(--primary);
     color: white;
-    box-shadow: 0 10px 20px rgba(109, 40, 217, 0.3);
+    box-shadow: none;
 }
 
 .btn-primary:hover {
-    box-shadow: 0 15px 30px rgba(109, 40, 217, 0.5);
-    transform: translateY(-2px);
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .btn-secondary {
@@ -215,26 +215,67 @@ ul {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 150px 5% 100px;
-    max-width: 1400px;
-    margin: 0 auto;
-    gap: 50px;
     position: relative;
+    overflow: hidden;
+}
+
+.hero-bg-anim {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    animation: zoomPan 10s infinite alternate linear;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 100%);
+    z-index: 1;
+}
+
+@keyframes zoomPan {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.15) translate(-2%, 2%); }
+}
+
+.hero-lights-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    mix-blend-mode: color;
+    pointer-events: none;
+    animation: colorShiftLights 3s infinite alternate linear;
+}
+
+@keyframes colorShiftLights {
+    0% {
+        background: 
+            radial-gradient(circle at 85% 50%, rgba(255, 0, 255, 0.7) 0%, transparent 40%),
+            radial-gradient(circle at 15% 50%, rgba(0, 255, 100, 0.7) 0%, transparent 40%);
+    }
+    100% {
+        background: 
+            radial-gradient(circle at 85% 50%, rgba(0, 255, 100, 0.7) 0%, transparent 40%),
+            radial-gradient(circle at 15% 50%, rgba(255, 0, 255, 0.7) 0%, transparent 40%);
+    }
 }
 
 /* Glow effect in background */
 .hero::before {
-    content: '';
-    position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 400px;
-    height: 400px;
-    background: var(--primary);
-    filter: blur(150px);
-    opacity: 0.3;
-    z-index: -1;
+    display: none;
 }
 
 .hero-content {
@@ -248,9 +289,7 @@ ul {
 }
 
 .highlight {
-    background: linear-gradient(to right, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--primary);
 }
 
 .hero-content p {
@@ -278,20 +317,8 @@ ul {
 }
 
 .highlight-item i {
-    color: var(--primary);
+    color: var(--text-main);
     font-size: 1.2rem;
-}
-
-.hero-image {
-    flex: 1;
-    position: relative;
-}
-
-.hero-image img {
-    width: 100%;
-    border-radius: var(--border-radius);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    border: 1px solid var(--glass-border);
 }
 
 /* =======================================
@@ -451,7 +478,6 @@ ul {
     background: var(--primary);
     color: white;
     border-color: var(--primary);
-    box-shadow: 0 0 15px rgba(109, 40, 217, 0.5);
 }
 
 .step-connector {
@@ -492,7 +518,7 @@ textarea {
 
 input:focus, select:focus, textarea:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.2);
+    box-shadow: 0 0 0 1px var(--primary);
 }
 
 .time-slots {
@@ -572,8 +598,9 @@ input:focus, select:focus, textarea:focus {
 }
 
 .pricing-card.popular {
-    background: linear-gradient(180deg, var(--bg-card) 0%, rgba(109, 40, 217, 0.1) 100%);
+    background: var(--bg-card);
     border-color: var(--primary);
+    border-width: 2px;
     transform: scale(1.05);
 }
 
@@ -586,7 +613,8 @@ input:focus, select:focus, textarea:focus {
     top: -15px;
     left: 50%;
     transform: translateX(-50%);
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    background: var(--primary);
+    color: white;
     padding: 5px 15px;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -655,7 +683,7 @@ input:focus, select:focus, textarea:focus {
 .equip-card .icon-box {
     width: 70px;
     height: 70px;
-    background: rgba(109, 40, 217, 0.1);
+    background: #f5f5f5;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -714,6 +742,8 @@ input:focus, select:focus, textarea:focus {
 
 .masonry-item img {
     width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
     display: block;
     transition: var(--transition);
 }
@@ -783,9 +813,10 @@ input:focus, select:focus, textarea:focus {
 
 .service-pill:hover {
     background: var(--primary);
+    color: white;
     border-color: var(--primary);
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(109, 40, 217, 0.3);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
 /* =======================================
